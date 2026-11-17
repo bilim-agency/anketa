@@ -681,9 +681,7 @@
             ✓ Анкета отправлена. Спасибо! До встречи на консультации.
           </div>
 
-          <div style="margin-top: 24px; font-size: 11px; color: #94A3B8; text-align: center;">
-            <span onclick="resetSubmissionLock()" style="cursor: pointer; text-decoration: underline;" title="Для проверки ментором">Сбросить отправку на этом устройстве (для теста)</span>
-          </div>
+
         </div>
       </section>
 
@@ -911,7 +909,7 @@
 
     // Отправка в Google Таблицу
     function submitQuiz() {
-      state.recommendation = generateExpertRecommendation();
+      state.recommendation = "";
 
       const loader = document.getElementById('submittingLoader');
       const footer = document.getElementById('quizFooter');
