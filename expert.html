@@ -590,7 +590,7 @@
 
     <!-- Панель навигации -->
     <nav class="nav-tabs">
-      <div class="nav-tab-btn active" id="tabCabinet" style="cursor: default;">📊 Кабинет эксперта (<span id="totalStudentsCount">4</span>)</div>
+      <div class="nav-tab-btn active" id="tabCabinet" style="cursor: default;">📊 Кабинет эксперта (<span id="totalStudentsCount">0</span>)</div>
       <a href="index.html" target="_blank" class="nav-tab-btn">🎓 Анкета (опрос) ученика <span class="tab-external-badge">↗</span></a>
     </nav>
 
@@ -616,17 +616,17 @@
         <div class="stats-row">
           <div class="stat-card stat-green">
             <div class="stat-card-title">🟢 Группа 1 (Определился)</div>
-            <div class="stat-card-num" id="statG1Count">2</div>
+            <div class="stat-card-num" id="statG1Count">0</div>
             <div class="stat-card-desc">Знает специальность · Нужен точный подбор вузов</div>
           </div>
           <div class="stat-card stat-yellow">
             <div class="stat-card-title">🟡 Группа 2 (Колеблется)</div>
-            <div class="stat-card-num" id="statG2Count">1</div>
+            <div class="stat-card-num" id="statG2Count">0</div>
             <div class="stat-card-desc">Выбирает из 2-3 сфер · Нужен созвон-сравнение</div>
           </div>
           <div class="stat-card stat-red">
             <div class="stat-card-title">🔴 Группа 3 (В поиске)</div>
-            <div class="stat-card-num" id="statG3Count">1</div>
+            <div class="stat-card-num" id="statG3Count">0</div>
             <div class="stat-card-desc">В поиске с нуля · Нужен тест склонностей</div>
           </div>
         </div>
@@ -673,58 +673,13 @@
 
   <script>
     // Базовые эталонные анкеты (синхронизированы с Google Таблицей)
-    const DEFAULT_STUDENTS = [
-      {
-        id: 1,
-        time: '16.11.2026 14:20',
-        name: 'Даниил Морозов',
-        groupId: 1,
-        groupLabel: '🟢 Группа 1 (Определился)',
-        sphere: 'IT, программирование и ИИ',
-        specialty: 'Fullstack-разработчик / ИИ',
-        questions: 'Какие вузы в Алматы самые сильные по IT? Сложно ли пройти собеседование по аттестату РФ?',
-        recommendation: 'Подготовить сильные программы IT (МУИТ, Satbayev, СДУ), требования к внутреннему собеседованию и дедлайны подачи аттестата РФ.'
-      },
-      {
-        id: 2,
-        time: '16.11.2026 14:45',
-        name: 'София Васильева',
-        groupId: 2,
-        groupLabel: '🟡 Группа 2 (Колеблется)',
-        sphere: 'Бизнес, финансы и маркетинг',
-        specialty: 'Выбираю между корпоративными финансами и digital-маркетингом',
-        questions: 'Помогите сравнить KAZGUU (MNU) и AlmaU. Где сильнее стажировки?',
-        recommendation: 'Созвон-сравнение программ Бизнеса (KAZGUU vs AlmaU). Разобрать учебные планы, карьерные треки и стажировки, чтобы выбрать одну профессию.'
-      },
-      {
-        id: 3,
-        time: '16.11.2026 15:15',
-        name: 'Артём Кузнецов',
-        groupId: 3,
-        groupLabel: '🔴 Группа 3 (В поиске)',
-        sphere: 'Инженерия и технологии',
-        specialty: 'Пока точно не знаю, нравятся технологии и проектирование',
-        questions: 'С чего начать выбор? Какие предметы будут проверять на собеседовании?',
-        recommendation: 'Провести вводную профориентационную сессию с тестом склонностей. Разобрать широкие базовые направления с возможностью выбора узкого профиля на 2 курсе.'
-      },
-      {
-        id: 4,
-        time: '16.11.2026 15:40',
-        name: 'Михаил Попов',
-        groupId: 1,
-        groupLabel: '🟢 Группа 1 (Определился)',
-        sphere: 'Инженерия и технологии',
-        specialty: 'Нефтегазовое дело и геология',
-        questions: 'Каковы условия нострификации аттестата РФ и общежития в Satbayev?',
-        recommendation: 'Подборка программ Satbayev University и АУНГ, порядок нострификации аттестата РФ и дедлайны приёмной комиссии.'
-      }
-    ];
+    const DEFAULT_STUDENTS = [];
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeFYxaeraUlvFQKcDdGDxyLfocznN7NimKn2qnEq8ufxX1NsE0oa6-fCiIi3gIowGD/exec';
 
     // Хранилище учеников
     function getLocalStudents() {
-      const stored = localStorage.getItem('bilim_expert_responses');
+      const stored = localStorage.getItem('bilim_expert_responses_clean');
       if (stored) {
         try { return JSON.parse(stored); } catch (e) {}
       }
@@ -733,7 +688,7 @@
 
     function resetCabinetData() {
       if (confirm('Сбросить тестовые анкеты и вернуть 4 эталонных профиля?')) {
-        localStorage.removeItem('bilim_expert_responses');
+        localStorage.removeItem('bilim_expert_responses_clean');
         renderStudents();
       }
     }
@@ -772,7 +727,7 @@
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:30px; color:#647B8C;">По выбранному фильтру анкет не найдено.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:50px 20px; color:#647B8C; background:#FFFFFF; border-radius:12px; border:1px dashed #CBD5E1;"><div style="font-size:32px; margin-bottom:12px;">📭</div><div style="font-weight:700; color:#0B314C; font-size:16px;">Пока нет поступивших анкет</div><div style="font-size:13px; color:#64748B; margin-top:6px;">Как только абитуриент заполнит опрос, его карточка с ответами и группой готовности сразу появится здесь.</div></div>';
         return;
       }
 
