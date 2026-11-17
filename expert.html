@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Скрининг абитуриентов — BILIM (Рабочий кабинет эксперта)</title>
+  <title>Скрининг абитуриентов — BILIM (Кабинет ментора ментора)</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -584,31 +584,26 @@
         </div>
       </div>
       <div style="font-size: 12px; font-weight: 700; color: #FFE97E;">
-        5 вопросов · 3 группы
+        Кабинет ментора
       </div>
     </header>
 
     <!-- Панель навигации -->
-    <nav class="nav-tabs">
-      <div class="nav-tab-btn active" id="tabCabinet" style="cursor: default;">📊 Кабинет эксперта (<span id="totalStudentsCount">0</span>)</div>
-      <a href="index.html" target="_blank" class="nav-tab-btn">🎓 Анкета (опрос) ученика <span class="tab-external-badge">↗</span></a>
-    </nav>
+    
 
     <!-- ================= КАБИНЕТ ЭКСПЕРТА ================= -->
     <section class="view-section active" id="viewCabinet">
       <div class="cabinet-inner">
         <div class="cabinet-header">
           <div class="cabinet-title-box">
-            <h2>Кабинет эксперта-профориентолога</h2>
-            <p>База анкет абитуриентов из РФ, готовые рекомендации к созвону и синхронизация с таблицей.</p>
+            <h2>Кабинет ментора — BILIM (<span id="totalStudentsCount">0</span> анкет)</h2>
+            <p>Контроль скрининга абитуриентов, распределение по группам готовности и передача экспертам-профориентологам.</p>
           </div>
           <div class="cabinet-actions">
             <a href="https://docs.google.com/spreadsheets/d/1w05fPf1fvgHU2_6oUfv9pnucujcjCC_UJrhRQ5LkVQ8/edit" target="_blank" class="btn-sheet-link">
               📊 Открыть Google Таблицу ↗
             </a>
-            <button type="button" class="btn-secondary" onclick="resetCabinetData()" title="Очистить тестовые анкеты браузера">
-              🗑️ Сброс тестов
-            </button>
+            
           </div>
         </div>
 
@@ -617,17 +612,17 @@
           <div class="stat-card stat-green">
             <div class="stat-card-title">🟢 Группа 1 (Определился)</div>
             <div class="stat-card-num" id="statG1Count">0</div>
-            <div class="stat-card-desc">Знает специальность · Нужен точный подбор вузов</div>
+            <div class="stat-card-desc">Определился · Передать эксперту для точного подбора вузов</div>
           </div>
           <div class="stat-card stat-yellow">
             <div class="stat-card-title">🟡 Группа 2 (Колеблется)</div>
             <div class="stat-card-num" id="statG2Count">0</div>
-            <div class="stat-card-desc">Выбирает из 2-3 сфер · Нужен созвон-сравнение</div>
+            <div class="stat-card-desc">Колеблется · Эксперту провести созвон-сравнение</div>
           </div>
           <div class="stat-card stat-red">
             <div class="stat-card-title">🔴 Группа 3 (В поиске)</div>
             <div class="stat-card-num" id="statG3Count">0</div>
-            <div class="stat-card-desc">В поиске с нуля · Нужен тест склонностей</div>
+            <div class="stat-card-desc">В поиске с нуля · Эксперту провести полную сессию</div>
           </div>
         </div>
 
@@ -647,21 +642,21 @@
           <!-- Генерируется через JS -->
         </div>
 
-        <!-- Шпаргалка эксперту к первой беседе -->
+        <!-- Памятка ментора по контролю работы экспертов -->
         <div class="expert-guide-box">
-          <h3>💡 Шпаргалка эксперта: стратегия первой консультации по группам</h3>
+          <h3>💡 Памятка ментора: контроль качества и распределение абитуриентов по экспертам</h3>
           <div class="guide-cards">
             <div class="guide-card">
               <div class="guide-card-title" style="color:#15803D;">🟢 Группа 1 (Определился)</div>
-              <div>Не тратить время на профориентацию. Сразу дать топовые программы вузов РК, проходные баллы аттестата РФ, специфику собеседования и дедлайны.</div>
+              <div><strong>Задача ментора:</strong> Назначить эксперта по выбранному профилю. Проконтролировать, чтобы эксперт не тратил время на тесты, а сразу дал подборку программ вузов РК, требования к аттестату РФ и дедлайны.</div>
             </div>
             <div class="guide-card">
               <div class="guide-card-title" style="color:#B45309;">🟡 Группа 2 (Колеблется)</div>
-              <div>Провести созвон-сравнение. Сопоставить учебные планы, реальные стажировки и различия в карьере, чтобы снять сомнения и выбрать один трек.</div>
+              <div><strong>Задача ментора:</strong> Поставить задачу эксперту на созвон-сравнение. Проконтролировать разбор учебных планов и карьерных перспектив, чтобы помочь ученику сделать окончательный выбор.</div>
             </div>
             <div class="guide-card">
               <div class="guide-card-title" style="color:#B91C1C;">🔴 Группа 3 (В поиске)</div>
-              <div>Снять тревожность. Провести тест склонностей, объяснить поступление без ЕГЭ/ЕНТ и предложить широкие базовые факультеты.</div>
+              <div><strong>Задача ментора:</strong> Передать ведущему профориентологу на глубокую индивидуальную диагностику. Проконтролировать снятие тревожности у родителей и подбор широких базовых направлений.</div>
             </div>
           </div>
         </div>
@@ -686,11 +681,7 @@
       return [...DEFAULT_STUDENTS];
     }
 
-    function resetCabinetData() {
-      if (confirm('Сбросить тестовые анкеты и вернуть 4 эталонных профиля?')) {
-        localStorage.removeItem('bilim_expert_responses_clean');
-        renderStudents();
-      }
+    
     }
 
     // Отрисовка кабинета эксперта
@@ -752,7 +743,7 @@
               <div class="detail-val">${s.sphere} · <span style="color:#0B314C;">${s.specialty || 'Не указана'}</span></div>
             </div>
             <div>
-              <div class="detail-label">Вопросы абитуриента к эксперту</div>
+              <div class="detail-label">Вопрос абитуриента к профориентологу</div>
               <div class="detail-val" style="color:#475569;">${s.questions || '—'}</div>
             </div>
           </div>
